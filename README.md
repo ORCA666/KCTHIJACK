@@ -20,7 +20,7 @@
 * And Note That: i dont claim that the method is mine, this method is been around for years, but the analysis paper i read; [North Korea’s Lazarus APT leverages Windows Update client, GitHub in latest campaign](https://blog.malwarebytes.com/threat-intelligence/2022/01/north-koreas-lazarus-apt-leverages-windows-update-client-github-in-latest-campaign/) got my attention 
 
 # AT THE END:
-#### This is not a code to bypass Av's as is, but a method used to do so, instead of using creatthread or the remote version for example, at the other hand to see how `KeUserModeCallback` method work u can check [this](https://j00ru.vexillium.org/2010/09/kernel-exploitation-r0-to-r3-transitions-via-keusermodecallback/)
+#### This is not a code to bypass Av's as is, but a method used to do so, instead of using createthread for example, at the other hand to see how `KeUserModeCallback` method work u can check [this](https://j00ru.vexillium.org/2010/09/kernel-exploitation-r0-to-r3-transitions-via-keusermodecallback/)
 
 
 ![120064592-a5c83480-c075-11eb-89c1-78732ecaf8d3](https://user-images.githubusercontent.com/66519611/123219351-791d0680-d4d5-11eb-8248-e34069d0ad6d.png)
