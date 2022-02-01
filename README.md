@@ -4,6 +4,7 @@
 ##### KCTHIJACK ; `KernelCallbackTable Hijack`; is a known technique used to run the shellcode after injection, sometimes in other processes, basically using something like `KeUserModeCallback` or pacthing `__fnCOPYDATA` in `KERNELCALLBACKTABLE` struct, However i based this code on something else, this [paper](https://samples.vx-underground.org/APTs/2022/2022.01.27(1)/Paper/blog.malwarebytes.com-North%20Koreas%20Lazarus%20APT%20leverages%20Windows%20Update%20client%20GitHub%20in%20latest%20campaign.pdf) to be more specific, this part here: 
 
 ![image](https://user-images.githubusercontent.com/66519611/151924523-761216c1-b244-4ce9-9393-f5781625e8fa.png)
+![image](https://user-images.githubusercontent.com/66519611/151929063-335a7a3f-fe49-422e-9673-6ed346b412fe.jpg)
 
 # HOW DOES IT WORK:
 * first thing, for anyone that didnt play with `KERNELCALLBACKTABLE` yet, u wont be able to find the pointer to it in peb unless you are loading `user32.dll` or targeting a gui process (with window), thats why a lot of code can be found targeting `explorer.exe`, at least thats what happened to me, so i loaded it [here](https://github.com/ORCA666/KCTHIJACK/blob/c77dc40c4e686d68a775f23c86e95706f25827cb/KCTHijack/main.c#L175)
@@ -12,6 +13,7 @@
 * after overwriting `WMIsAvailableOffline`'s address with our calc.exe shellcode, the next step was to patch `__fnDWORD` address and let it point to our `WMIsAvailableOffline`, which is our shellcode ...
 * of course, managing the memory part ;0, so dont forget about the read/write permissions ...
 * now at the end all was left to do was to trigger the shellcode, i used [MessageBoxA](https://github.com/ORCA666/KCTHIJACK/blob/c77dc40c4e686d68a775f23c86e95706f25827cb/KCTHijack/main.c#L157) to do so
+* btw i added [this](https://github.com/ORCA666/KCTHIJACK/blob/9ccdfe393e17c0a37a9718264984f5f699f870c4/KCTHijack/main.c#L41) function here, to print out `kct.__fnDWORD`'s value after overwriting so u can see if it is really working
 
 # THANKS FOR:
 * [kct](https://github.com/odzhan/injection/blob/master/kct/kct.c) which represent the kernalcallbacktable hijacking method, done on explorer.exe
